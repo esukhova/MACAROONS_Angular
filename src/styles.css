@@ -1,1 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: Tavolga;
+  src: url("assets/fonts/TavolgaFree.ttf");
+}
+
+@font-face {
+  font-family: GilroyRegular;
+  src: url("assets/fonts/GilroyRegular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: GilroyMedium;
+  src: url("assets/fonts/GilroyMedium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: GilroyBold;
+  src: url("assets/fonts/GilroyBold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: GilroyExtrabold;
+  src: url("assets/fonts/GilroyExtrabold.ttf");
+  font-weight: 800;
+}
+
+body {
+  font-family: GilroyRegular, sans-serif;
+  margin: 0;
+}
+
+.container {
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 /* You can add global styles to this file, and also import other style files */
