@@ -28,7 +28,7 @@
       </ul>
     </nav>
     <div class="burger" id="burger" (click)="toggleMenuClass(menuElement)"></div>
-    <div class="header__contact contact"><a href="#" class="header__contact-link contact-link">{{ourPhone}}</a></div>
+    <div class="header__contact contact"><a href="tel:{{ourPhone}}" class="header__contact-link contact-link">{{ourPhone}}</a></div>
   </div>
 </header>
 <section class="main">
@@ -127,13 +127,12 @@
       <a href="#"><img src="assets/images/logo.png" alt="Логотип"></a>
     </div>
     <div class="footer__instagram-image">
-      <a href="#" class="footer__instagram-link"><img src="assets/images/instagram.png" alt="Инстаграм"></a>
+      <a [href]="instagramHref" class="footer__instagram-link"><img src="assets/images/instagram.png" alt="Инстаграм"></a>
     </div>
     <div class="footer__rights">Все права защищены, 2020</div>
     <div class="footer__instagram-text">
       <a [href]="instagramHref" class="footer__instagram-link">Мы в Instagram</a>
     </div>
-    <div class="footer__contact contact"><a href="#" class="footer__contact-link contact-link">+375 (29)
-      368-98-68</a></div>
+    <div class="footer__contact contact"><a href="tel:{{ourPhone}}" class="footer__contact-link contact-link">{{ourPhone}}</a></div>
   </div>
 </footer>

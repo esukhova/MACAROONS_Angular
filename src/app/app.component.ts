@@ -9,7 +9,7 @@ import {productType} from "./types/product.type";
 export class AppComponent {
   public showPresent: boolean = true;
   public ourPhone = '+375 (29) 368-98-68';
-  public instagramHref = '#';
+  public instagramHref = 'https://www.google.com/';
 
   public advantages = [
     {
