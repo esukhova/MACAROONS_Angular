@@ -1,11 +1,12 @@
-<div class="present" id="present" *ngIf="showPresent">
-  <div class="present__image">
-    <img src="assets/images/present.png" class="present__img" alt="Подарок">
+<div class="cart" id="cart" *ngIf="showCart">
+  <div class="cart__image">
+    <img src="assets/images/cart.png" class="cart__img" alt="Корзина">
+    <div class="cart__count">{{cartService.count}}</div>
   </div>
-  <div class="present__cloud" id="present__cloud">
-    <div class="present__triangle"></div>
-    <div class="present__text">
-      Оформите заказ и получите подарок!
+  <div class="cart__cloud" id="cart__cloud">
+    <div class="cart__triangle"></div>
+    <div class="cart__text">
+      {{cartService.sum | currency: 'руб.' : 'symbol' : '1.2-2': 'be'}}
     </div>
   </div>
 </div>
@@ -28,7 +29,7 @@
       </ul>
     </nav>
     <div class="burger" id="burger" (click)="toggleMenuClass(menuElement)"></div>
-    <div class="header__contact contact"><a href="tel:{{ourPhone}}" class="header__contact-link contact-link">{{ourPhone}}</a></div>
+    <div class="header__contact contact"><a href="tel:{{ourPhone}}" class="header__contact-link contact-link">{{ourPhone | prettyPhone}}</a></div>
   </div>
 </header>
 <section class="main">
@@ -40,7 +41,7 @@
       <div class="main__text">Побалуйте себя и своих близких самыми вкусными и ароматными домашними пироженками
         Macaroon!
       </div>
-      <button class="main__btn btn" (click)="scrollTo(productsElement)">Выбрать макарун</button>
+      <button class="main__btn btn" (click)="scrollTo(productsElement)" btnBackground>Выбрать макарун</button>
     </div>
     <div class="main__image">
       <div class="main__circle1"></div>
@@ -65,32 +66,14 @@
     <div class="advantages__image">
       <img class="advantages__image-img" src="assets/images/macaroon.png" alt="Макарун">
     </div>
-    <div class="advantages__item advantages-item" *ngFor="let advantage of advantages; let i = index;">
-      <div class="advantages-item__circle"><span class="advantages-item__number">{{ i + 1 }}</span></div>
-      <h3 class="advantages-item__title">{{ advantage.title }}</h3>
-      <div class="advantages-item__text">{{ advantage.text }}</div>
-    </div>
+    <advantage *ngFor="let advantage of advantages; let i = index;" [advantage] = "advantage" [index] = "i"></advantage>
   </div>
 </section>
 <section class="products" #productsElement>
   <div class="products__container container">
     <h2 class="products__title title">Выберите свой макарун</h2>
     <div class="products__items">
-      <div class="products__item products-item" *ngFor="let product of products">
-        <div class="products-item__image">
-          <img src="assets/images/{{product.image}}" alt="{{product.title}}" class="products-item__image-img">
-        </div>
-        <h3 class="products-item__title">{{product.title}}</h3>
-        <div class="products-item__content">
-          <div class="products-item__info">
-            <div class="products-item__amount">{{product.amount}}</div>
-            <div class="products-item__price">{{product.price}}</div>
-          </div>
-          <div class="products-item__actions">
-            <button class="products-item__btn btn" (click)="addToCart(product, orderElement)">Заказать</button>
-          </div>
-        </div>
-      </div>
+      <product *ngFor="let product of products" [product]="product" (addToCartEvent)="addToCart(product, orderElement)"></product>
     </div>
   </div>
 </section>
@@ -133,6 +116,6 @@
     <div class="footer__instagram-text">
       <a [href]="instagramHref" class="footer__instagram-link">Мы в Instagram</a>
     </div>
-    <div class="footer__contact contact"><a href="tel:{{ourPhone}}" class="footer__contact-link contact-link">{{ourPhone}}</a></div>
+    <div class="footer__contact contact"><a href="tel:{{ourPhone}}" class="footer__contact-link contact-link">{{ourPhone | prettyPhone}}</a></div>
   </div>
 </footer>

@@ -1,0 +1,18 @@
+<div class="products__item products-item">
+  <div class="products-item__image">
+    <img src="assets/images/{{product.image}}" alt="{{product.title}}" class="products-item__image-img">
+  </div>
+  <h3 class="products-item__title">{{product.title}}</h3>
+  <div class="products-item__content">
+    <div class="products-item__info">
+      <div class="products-item__amount">{{product.amount}}</div>
+      <div class="products-item__price">{{product.price | currency: 'руб.' : 'symbol' : '1.2-2': 'be'}}</div>
+    </div>
+    <div class="products-item__actions">
+      <button class="products-item__btn btn" btnBackground
+              [btnBackgroundDefaultBg]="'linear-gradient(90deg, rgb(53, 8, 30), rgb(185, 72, 92))'"
+              [btnBackgroundFocusBg]="'linear-gradient(90deg, rgb(183, 8, 80), rgb(255, 72, 92))'"
+              (click)="addProductToCart()">Заказать</button>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,29 @@
-import {Component} from '@angular/core';
-import {productType} from "./types/product.type";
+import {Component, OnInit} from '@angular/core';
+import {ProductService} from "./services/product.service";
+import {CartService} from "./services/cart.service";
+import {ProductType} from "./types/product.type";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  public showPresent: boolean = true;
-  public ourPhone = '+375 (29) 368-98-68';
-  public instagramHref = 'https://www.google.com/';
+export class AppComponent implements OnInit {
 
-  public advantages = [
+  constructor(private productService: ProductService,
+              public cartService: CartService) {
+  }
+  showCart: boolean = true;
+  ourPhone: string = '375293689868';
+  instagramHref = 'https://www.google.com/';
+
+  formValues = {
+    choice: '',
+    name: '',
+    phone: ''
+  }
+
+  advantages = [
     {
       title: 'Лучшие продукты',
       text: 'Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты, ароматизаторы и красители.'
@@ -30,49 +42,27 @@ export class AppComponent {
     }
   ];
 
-  public products: productType[] = [
-    {
-      image: 'macaroon1.png',
-      title: 'Макарун с малиной',
-      amount: 1,
-      price: 1.70.toFixed(2).replace('.', ',')
-    },
-    {
-      image: 'macaroon2.png',
-      title: 'Макарун с манго',
-      amount: 1,
-      price: 1.70.toFixed(2).replace('.', ',')
-    },
-    {
-      image: 'macaroon3.png',
-      title: 'Пирог с ванилью',
-      amount: 1,
-      price: 1.70.toFixed(2).replace('.', ',')
-    },
-    {
-      image: 'macaroon4.png',
-      title: 'Пирог с фисташками',
-      amount: 1,
-      price: 1.70.toFixed(2).replace('.', ',')
-    },
-  ];
+  products: ProductType[] = [];
 
-  public formValues = {
-    choice: '',
-    name: '',
-    phone: ''
+  ngOnInit() {
+ this.products = this.productService.getProducts();
   }
 
-  public scrollTo(target: HTMLElement): void {
+  scrollTo(target: HTMLElement): void {
     target.scrollIntoView({behavior: "smooth"});
   }
 
-  public addToCart(product: productType, target: HTMLElement): void {
+  addToCart(product: ProductType, target: HTMLElement): void {
     this.scrollTo(target);
-    this.formValues.choice = product.title.toUpperCase();
+    this.formValues.choice = this.formValues.choice? this.formValues.choice + ', ' + product.title.toUpperCase() : product.title.toUpperCase();
+    this.cartService.count++;
+    this.cartService.sum = this.cartService.sum + product.price;
+    alert(product.title.toUpperCase() + ' добавлен в корзину!');
   }
 
-  public toggleMenuClass(menuElement: HTMLElement): void {
+  toggleMenuClass(menuElement: HTMLElement): void {
     menuElement.classList.toggle('menu_open');
   }
+
+  protected readonly CartService = CartService;
 }

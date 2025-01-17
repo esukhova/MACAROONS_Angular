@@ -48,4 +48,43 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
 }
+
+button.btn {
+  background: linear-gradient(90deg, rgb(113, 8, 30), rgb(215, 72, 92));
+  padding: 21px 41px;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 0.4px;
+  font-family: GilroyBold, sans-serif;
+  color: rgb(255, 255, 255);
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.btn:hover {
+  box-shadow: 0 5px 9px 1px rgba(130, 19, 40, 0.5);
+}
+
+.title {
+  font-size: 45px;
+  font-family: Tavolga, sans-serif;
+  color: rgb(51, 25, 7);
+  line-height: 1.222;
+  text-align: left;
+  font-weight: 400;
+  position: relative;
+  z-index: 10;
+}
+
+.text {
+  font-size: 18px;
+  font-family: GilroyRegular, sans-serif;
+  color: rgb(51, 25, 7);
+  line-height: 1.556;
+}
 /* You can add global styles to this file, and also import other style files */

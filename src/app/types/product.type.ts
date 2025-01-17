@@ -1,6 +1,6 @@
-export type productType = {
+export type ProductType = {
   image: string,
   title: string,
   amount: number,
-  price: string
+  price: number
 }
