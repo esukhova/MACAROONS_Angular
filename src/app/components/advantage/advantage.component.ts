@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AdvantageType} from "../types/advantage.type";
+import {AdvantageType} from "../../types/advantage.type";
 
 @Component({
   selector: 'advantage',
